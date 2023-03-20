@@ -20,12 +20,12 @@ public class AuthorRepository {
         System.out.println("save in the database");
     }
 
-    public Author load(int personId) throws Exception {
+    public Author load(int authorId) throws Exception {
         Author author = new Author();
         final String QUERY1 = "select * from person where id=?";
         Connection connection = JdbcConnection.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
-        statement.setInt(1, personId);
+        statement.setInt(1, authorId);
         ResultSet resultSet = statement.executeQuery();
         if (!resultSet.next()) return null;
         author.setId(resultSet.getLong("id"));

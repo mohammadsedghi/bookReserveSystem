@@ -4,6 +4,16 @@ public class Book {
    private String title;
    private int printYear;
     private String AuthorNameFamily;
+    private long authorId;
+private Long BookId;
+
+    public Long getBookId() {
+        return BookId;
+    }
+
+    public void setBookId(Long bookId) {
+        BookId = bookId;
+    }
 
     public String getTitle() {
         return title;
@@ -37,7 +47,7 @@ public class Book {
         this.authorId = authorId;
     }
 
-    private long authorId;
+
 
     public Book(String title, int printYear, String authorNameFamily, int authorId) {
         this.title = title;
