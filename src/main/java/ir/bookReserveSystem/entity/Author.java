@@ -20,6 +20,9 @@ public class Author {
         this.age = age;
     }
 
+    public Author() {
+    }
+
     public String getName() {
         return name;
     }
