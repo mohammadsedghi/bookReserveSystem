@@ -1,9 +1,9 @@
 package ir.bookReserveSystem.entity;
 
 public class Author {
-    String name,family;
-    int age;
-    Book[] books=new Book[10];
+   private String name,family;
+    private int age;
+    private Book[] books=new Book[10];
 
     public Author(String name, String family, int age) {
         this.name = name;
