@@ -5,14 +5,14 @@ public class Book {
    private int printYear;
     private String AuthorNameFamily;
     private long authorId;
-private Long bookId;
+     private Long bookId;
 
     public Long getBookId() {
         return bookId;
     }
 
     public void setBookId(Long bookId) {
-        bookId = bookId;
+        this.bookId = bookId;
     }
 
     public String getTitle() {
