@@ -36,4 +36,13 @@ public class BookRepository {
         book.setPrintYear(resultSet.getInt("printYear"));
         return book;
     }
+ public void delete(Book book) throws SQLException {
+    final String QUERY1 = "delete from book where id = ?";
+    Connection connection = JdbcConnection.getConnection();
+    PreparedStatement statement = connection.prepareStatement(QUERY1);
+    statement.setLong(1, book.getBookId());
+    statement.execute();
+    System.out.println("delete");
 }
+}
+
