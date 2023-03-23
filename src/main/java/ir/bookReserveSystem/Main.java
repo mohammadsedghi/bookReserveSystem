@@ -9,6 +9,6 @@ public class Main {
         AuthorService authorService=new AuthorService();
         BookService bookService=new BookService();
        // authorService.register("ali","sedghi",20);
-        bookService.addBook("culture",2023,10l);
+        bookService.addBook("culture",2023,10);
     }
 }
