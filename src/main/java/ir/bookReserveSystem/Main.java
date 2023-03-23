@@ -11,9 +11,9 @@ public class Main {
 
         AuthorService authorService=new AuthorService();
         BookService bookService=new BookService();
-       // authorService.register("ali","sedghi",20);
-       // bookService.addBook("culture",2023,10);
-        for (Book b:bookService.authorBookList(10)
+       authorService.register("ali","sedghi",20);
+       bookService.addBook("economy",2023,1);
+        for (Book b:bookService.authorBookList(1)
              ) {
             if (b!=null) System.out.println(b);
         }

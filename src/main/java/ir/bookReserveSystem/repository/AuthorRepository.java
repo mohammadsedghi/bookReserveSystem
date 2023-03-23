@@ -21,12 +21,12 @@ public class AuthorRepository {
         System.out.println("save in the database");
     }
 
-    public Author load(int authorId) throws Exception {
+    public Author load(long authorId) throws Exception {
         Author author = new Author();
         final String QUERY1 = "select * from author where id=?";
         Connection connection = JdbcConnection.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
-        statement.setInt(1, authorId);
+        statement.setLong(1, authorId);
         ResultSet resultSet = statement.executeQuery();
         if (!resultSet.next()) return null;
         author.setId(resultSet.getLong("id"));
@@ -34,5 +34,16 @@ public class AuthorRepository {
         author.setFamily(resultSet.getString("family"));
         author.setAge(resultSet.getInt("age"));
         return author;
+    }
+    public long loadId() throws SQLException {
+        long id=0;
+        final String QUERY1 = "select * from author ";
+        Connection connection = JdbcConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(QUERY1);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()){
+            id = resultSet.getLong("id");
+        }
+        return id;
     }
 }

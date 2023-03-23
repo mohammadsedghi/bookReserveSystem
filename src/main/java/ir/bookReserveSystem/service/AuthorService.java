@@ -10,12 +10,14 @@ public class AuthorService {
 
     public void register(String name, String family, int age) throws Exception {
         Author author = new Author(name, family, age);
-        author.setId(10l);
+        author.setId(generateAuthorId());
         authorRepository.save(author);
     }
 
-    public long generateAuthorId() {
-        return 0;
+    public long generateAuthorId()throws Exception {
+        long generator= authorRepository.loadId()+1;
+        if (generator==0)generator=1;
+        return generator;
     }
 
 

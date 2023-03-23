@@ -1,19 +1,26 @@
 package ir.bookReserveSystem.service;
 
+import ir.bookReserveSystem.entity.Author;
 import ir.bookReserveSystem.entity.Book;
+import ir.bookReserveSystem.repository.AuthorRepository;
 import ir.bookReserveSystem.repository.BookRepository;
+
+import java.sql.*;
 
 public class BookService {
     public final BookRepository bookRepository=new BookRepository();
+    public final AuthorRepository authorRepository=new AuthorRepository();
     public void addBook(String title,int printYear,long authorId) throws Exception{
+
         Book book=new Book(title,printYear,authorId);
-        book.setBookId(bookIdGenerator(authorId));
-        book.setAuthorNameFamily("alisedghi");
+        book.setBookId(bookIdGenerator());
+       Author author= authorRepository.load(authorId);
+       String str=author.getName().concat(author.getFamily());
+        book.setAuthorNameFamily(str);
         bookRepository.save(book);
     }
-    public long  bookIdGenerator(long authorId){
-        authorId+=1;
-       long generator=authorId;
+    public long  bookIdGenerator()throws Exception{
+       long generator= bookRepository.loadId()+1;
        return generator;
     }
     public Book[] authorBookList(long authorId) throws Exception {
@@ -31,8 +38,5 @@ public class BookService {
         return authorBooks;
     }
 
-    @Override
-    public String toString() {
-        return "BookRepository{}";
-    }
+
 }

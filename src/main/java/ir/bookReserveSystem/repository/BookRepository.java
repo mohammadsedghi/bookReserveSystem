@@ -3,10 +3,8 @@ package ir.bookReserveSystem.repository;
 import ir.bookReserveSystem.connection.JdbcConnection;
 import ir.bookReserveSystem.entity.Author;
 import ir.bookReserveSystem.entity.Book;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 public class BookRepository {
     public void save(Book book) throws SQLException {
@@ -70,7 +68,17 @@ public class BookRepository {
         }
         return books;
     }
-
+    public long loadId() throws SQLException {
+        long id=0;
+        final String QUERY1 = "select * from book ";
+        Connection connection = JdbcConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(QUERY1);
+        ResultSet resultSet = statement.executeQuery();
+       while (resultSet.next()){
+         id = resultSet.getLong("id");
+       }
+        return id;
+    }
 }
 
 
