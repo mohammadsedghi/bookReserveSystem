@@ -1,9 +1,7 @@
 package ir.bookReserveSystem.repository;
 
 import ir.bookReserveSystem.connection.JdbcConnection;
-import ir.bookReserveSystem.entity.Author;
 import ir.bookReserveSystem.entity.Book;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

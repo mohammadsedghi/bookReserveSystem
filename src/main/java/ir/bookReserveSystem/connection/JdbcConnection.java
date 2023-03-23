@@ -3,7 +3,7 @@ package ir.bookReserveSystem.connection;
 import java.sql.DriverManager;
 
 public class JdbcConnection {
-    public static final String DB_URL = "jdbc:postgresql://localhost/irmaktab";
+    public static final String DB_URL = "jdbc:postgresql://localhost/publishers";
     public static final String USER = "postgres";
     public static final String PASS = "12345";
     public static java.sql.Connection getConnection() {

@@ -22,7 +22,7 @@ public class AuthorRepository {
 
     public Author load(int authorId) throws Exception {
         Author author = new Author();
-        final String QUERY1 = "select * from person where id=?";
+        final String QUERY1 = "select * from author where id=?";
         Connection connection = JdbcConnection.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
         statement.setInt(1, authorId);
