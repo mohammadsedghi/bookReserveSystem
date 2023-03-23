@@ -63,4 +63,15 @@ public class Book {
     }
 
     public Book(){}
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", printYear=" + printYear +
+                ", AuthorNameFamily='" + AuthorNameFamily + '\'' +
+                ", authorId=" + authorId +
+                ", bookId=" + bookId +
+                '}';
+    }
 }
