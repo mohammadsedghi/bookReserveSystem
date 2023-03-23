@@ -55,5 +55,12 @@ private Long bookId;
         AuthorNameFamily = authorNameFamily;
         this.authorId = authorId;
     }
+
+    public Book(String title, int printYear, long authorId) {
+        this.title = title;
+        this.printYear = printYear;
+        this.authorId = authorId;
+    }
+
     public Book(){}
 }
