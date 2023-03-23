@@ -10,12 +10,13 @@ import java.sql.SQLException;
 
 public class AuthorRepository {
     public void save(Author author) throws SQLException {
-        final String QUERY1 = "insert into author( name, family,age) VALUES (?,?,?)";
+        final String QUERY1 = "insert into author(id, name, family,age) VALUES (?,?,?,?)";
         Connection connection = JdbcConnection.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
-        statement.setString(1, author.getName());
-        statement.setString(2, author.getFamily());
-        statement.setInt(3, author.getAge());
+        statement.setLong(1,author.getId());
+        statement.setString(2, author.getName());
+        statement.setString(3, author.getFamily());
+        statement.setInt(4, author.getAge());
         statement.execute();
         System.out.println("save in the database");
     }

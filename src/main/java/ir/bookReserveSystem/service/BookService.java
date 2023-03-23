@@ -5,13 +5,13 @@ import ir.bookReserveSystem.repository.BookRepository;
 
 public class BookService {
     public final BookRepository bookRepository=new BookRepository();
-    public void addBook(String title,int printYear,int authorId) throws Exception{
+    public void addBook(String title,int printYear,long authorId) throws Exception{
         Book book=new Book(title,printYear,authorId);
         book.setBookId(bookIdGenerator(authorId));
         book.setAuthorNameFamily("alisedghi");
         bookRepository.save(book);
     }
-    public long  bookIdGenerator(int authorId){
+    public long  bookIdGenerator(long authorId){
         authorId+=1;
        long generator=authorId;
        return generator;
