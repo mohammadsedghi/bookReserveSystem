@@ -3,7 +3,7 @@ package ir.bookReserveSystem.entity;
 public class Author {
    private String name,family;
     private int age;
-    private Book[] books=new Book[10];
+    private Book[] books=new Book[100];
     private long id;
 
     public long getId() {

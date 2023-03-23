@@ -16,5 +16,23 @@ public class BookService {
        long generator=authorId;
        return generator;
     }
+    public Book[] authorBookList(long authorId) throws Exception {
+        BookRepository bookRepository = new BookRepository();
+        Book[] books = bookRepository.loadAll();
+        Book[] authorBooks = new Book[books.length];
+        for (int i = 0; i < books.length; i++) {
+            if (books[i].getAuthorId() == authorId) {
+                for (int j = 0; j < authorBooks.length; j++) {
+                    authorBooks[j] = books[i];
 
+                }
+            }
+        }
+        return authorBooks;
+    }
+
+    @Override
+    public String toString() {
+        return "BookRepository{}";
+    }
 }
