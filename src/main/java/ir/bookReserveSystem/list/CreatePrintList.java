@@ -23,11 +23,12 @@ public class CreatePrintList {
 
     public void createBook()throws Exception{
         String[] title={"culture","economy","social","math","history"};
+        for (int i = 1; i <5 ; i++) {
         for (int j = 0; j < 5; j++) {
-            int i=2016;
-            bookService.addBook(title[j], i+j, j+1);
+            int k=2016;
+            bookService.addBook(title[j], k+j, i);
 
-        }
+        }}
         System.out.println("list of book created");
     }
    public void printAuthorBook()throws Exception {
