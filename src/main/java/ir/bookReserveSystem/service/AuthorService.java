@@ -1,9 +1,8 @@
 package ir.bookReserveSystem.service;
-
 import ir.bookReserveSystem.entity.Author;
-import ir.bookReserveSystem.entity.Book;
 import ir.bookReserveSystem.repository.AuthorRepository;
-import ir.bookReserveSystem.repository.BookRepository;
+import ir.bookReserveSystem.list.CreatePrintList;
+
 
 public class AuthorService {
     private final AuthorRepository authorRepository = new AuthorRepository();
@@ -19,7 +18,10 @@ public class AuthorService {
         if (generator==0)generator=1;
         return generator;
     }
-
+public void sortAuthorFamily() throws Exception{
+   CreatePrintList createPrintList=new CreatePrintList();
+   createPrintList.sortAuthor(authorRepository.loadAll());
+}
 
     @Override
     public String toString() {

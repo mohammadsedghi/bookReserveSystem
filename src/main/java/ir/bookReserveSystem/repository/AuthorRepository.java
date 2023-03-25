@@ -2,6 +2,7 @@ package ir.bookReserveSystem.repository;
 
 import ir.bookReserveSystem.connection.JdbcConnection;
 import ir.bookReserveSystem.entity.Author;
+import ir.bookReserveSystem.entity.Book;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,5 +46,28 @@ public class AuthorRepository {
             id = resultSet.getLong("id");
         }
         return id;
+    }
+    public Author[] loadAll() throws SQLException {
+        final String QUERY1 = "select * from author ";
+        Connection connection = JdbcConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(QUERY1,
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
+        ResultSet resultSet = statement.executeQuery();
+        int size = 0;
+        resultSet.last();
+        size = resultSet.getRow();
+        resultSet.beforeFirst();
+        Author[] authors = new Author[size];
+        int i = 0;
+        while (resultSet.next()) {
+            Author author=new Author();
+            author.setId(resultSet.getLong("id"));
+            author.setName(resultSet.getString("name"));
+            author.setFamily(resultSet.getString("family"));
+            author.setAge(resultSet.getInt("age"));
+            authors[i++] = author;
+        }
+        return authors;
     }
 }
