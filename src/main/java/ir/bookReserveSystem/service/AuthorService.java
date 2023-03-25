@@ -2,6 +2,7 @@ package ir.bookReserveSystem.service;
 import ir.bookReserveSystem.entity.Author;
 import ir.bookReserveSystem.repository.AuthorRepository;
 import ir.bookReserveSystem.list.CreatePrintList;
+import ir.bookReserveSystem.repository.HikariCpAuthorRepository;
 
 
 public class AuthorService {
@@ -20,7 +21,8 @@ public class AuthorService {
     }
 public void sortAuthorFamily() throws Exception{
    CreatePrintList createPrintList=new CreatePrintList();
-   createPrintList.sortAuthor(authorRepository.loadAll());
+   //createPrintList.sortAuthor(authorRepository.loadAll());
+    createPrintList.sortAuthor(HikariCpAuthorRepository.loadAll());
 }
 
     @Override

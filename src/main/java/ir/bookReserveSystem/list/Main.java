@@ -8,9 +8,9 @@ public class Main {
     public static void main(String[] args) throws Exception{
 CreatePrintList createPrintList=new CreatePrintList();
         AuthorService authorService=new AuthorService();
-createPrintList.createAuthor();
-createPrintList.createBook();
-createPrintList.printAuthorBook();
+//createPrintList.createAuthor();
+//createPrintList.createBook();
+//createPrintList.printAuthorBook();
 authorService.sortAuthorFamily();
     }
 }
