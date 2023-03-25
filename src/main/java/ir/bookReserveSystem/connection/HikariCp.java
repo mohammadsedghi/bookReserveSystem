@@ -1,14 +1,10 @@
 package ir.bookReserveSystem.connection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-public class hikariCp {
+public class HikariCp {
     private static DataSource datasource;
 
     public static DataSource getDataSource()
