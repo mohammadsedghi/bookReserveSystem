@@ -11,8 +11,7 @@ import java.sql.*;
 public class BookRepository {
     //save book in database
     public void save(Book book) throws SQLException {
-        DataSource dataSource= HikariCp.getDataSource();
-        Connection connection = dataSource.getConnection();
+        Connection connection=HikariCp.getConnection();
         final String QUERY1 = "insert into book( id, title,authorNameFamily,printYear,authorid) VALUES (?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(QUERY1);
         statement.setLong(1,book.getBookId());
@@ -26,8 +25,7 @@ public class BookRepository {
     }
     //load book from database
     public Book load(int bookId) throws Exception {
-        DataSource dataSource= HikariCp.getDataSource();
-        Connection connection = dataSource.getConnection();
+       Connection connection=HikariCp.getConnection();
         Book book = new Book();
         final String QUERY1 = "select * from book where id=?";
         PreparedStatement statement = connection.prepareStatement(QUERY1);
@@ -39,12 +37,12 @@ public class BookRepository {
         book.setAuthorNameFamily(resultSet.getString("authorNameFamily"));
         book.setPrintYear(resultSet.getInt("printYear"));
         book.setAuthorId(resultSet.getLong("authorid"));
+        connection.close();
         return book;
     }
     //delete book from database
  public void delete(Book book) throws SQLException {
-     DataSource dataSource= HikariCp.getDataSource();
-     Connection connection = dataSource.getConnection();
+     Connection connection=HikariCp.getConnection();
     final String QUERY1 = "delete from book where id = ?";
     PreparedStatement statement = connection.prepareStatement(QUERY1);
     statement.setLong(1, book.getBookId());
@@ -53,8 +51,7 @@ public class BookRepository {
 }
     //load all of  book from database
     public Book[] loadAll() throws Exception {
-        DataSource dataSource= HikariCp.getDataSource();
-        Connection connection = dataSource.getConnection();
+       Connection connection=HikariCp.getConnection();
         final String QUERY1 = "select * from book ";
         PreparedStatement statement = connection.prepareStatement(QUERY1,
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -81,8 +78,7 @@ public class BookRepository {
     }
     //load id of each book in database
     public long loadId() throws SQLException {
-        DataSource dataSource= HikariCp.getDataSource();
-        Connection connection = dataSource.getConnection();
+       Connection connection=HikariCp.getConnection();
         long id=0;
         final String QUERY1 = "select * from book ";
         PreparedStatement statement = connection.prepareStatement(QUERY1);
@@ -90,6 +86,7 @@ public class BookRepository {
        while (resultSet.next()){
          id = resultSet.getLong("id");
        }
+       connection.close();
         return id;
     }
 }
