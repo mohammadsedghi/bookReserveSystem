@@ -16,8 +16,8 @@ public class HikariCp {
             config.setUsername("postgres");
             config.setPassword("12345");
 
-            config.setMaximumPoolSize(10);
-            config.setAutoCommit(false);
+            config.setMaximumPoolSize(25);
+            config.setAutoCommit(true);
             config.addDataSourceProperty("cachePrepStmts", "true");
             config.addDataSourceProperty("prepStmtCacheSize", "250");
             config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

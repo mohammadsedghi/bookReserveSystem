@@ -21,6 +21,7 @@ public class BookRepository {
         statement.setLong(5,book.getAuthorId());
         statement.execute();
         System.out.println("save book in the database");
+        connection.close();
     }
 
     public Book load(int bookId) throws Exception {
@@ -72,6 +73,7 @@ public class BookRepository {
             book.setAuthorId(resultSet.getLong("authorid"));
             books[i++] = book;
         }
+        connection.close();
         return books;
     }
     public long loadId() throws SQLException {
