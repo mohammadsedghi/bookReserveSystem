@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 
 public class BookRepository {
+    //save book in database
     public void save(Book book) throws SQLException {
         DataSource dataSource= HikariCp.getDataSource();
         Connection connection = dataSource.getConnection();
@@ -23,7 +24,7 @@ public class BookRepository {
         System.out.println("save book in the database");
         connection.close();
     }
-
+    //load book from database
     public Book load(int bookId) throws Exception {
         DataSource dataSource= HikariCp.getDataSource();
         Connection connection = dataSource.getConnection();
@@ -40,6 +41,7 @@ public class BookRepository {
         book.setAuthorId(resultSet.getLong("authorid"));
         return book;
     }
+    //delete book from database
  public void delete(Book book) throws SQLException {
      DataSource dataSource= HikariCp.getDataSource();
      Connection connection = dataSource.getConnection();
@@ -49,6 +51,7 @@ public class BookRepository {
     statement.execute();
     System.out.println("delete");
 }
+    //load all of  book from database
     public Book[] loadAll() throws Exception {
         DataSource dataSource= HikariCp.getDataSource();
         Connection connection = dataSource.getConnection();
@@ -76,6 +79,7 @@ public class BookRepository {
         connection.close();
         return books;
     }
+    //load id of each book in database
     public long loadId() throws SQLException {
         DataSource dataSource= HikariCp.getDataSource();
         Connection connection = dataSource.getConnection();
