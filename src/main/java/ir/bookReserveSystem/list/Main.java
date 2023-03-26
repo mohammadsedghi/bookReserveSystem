@@ -9,7 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         CreatePrintList createPrintList = new CreatePrintList();
         AuthorService authorService = new AuthorService();
-        boolean program =true ;
+        boolean program = true;
         int menu;
         while (program) {
             System.out.println("inter your menu number");
@@ -18,14 +18,29 @@ public class Main {
             System.out.println("menu: 3-sort author family");
             System.out.println("menu: 4-create print book of author with id ");
             System.out.println("menu: 5-print all of book from all author and their info ");
-            System.out.println("EXIT");
-            switch (menu=scanner.nextInt()){
-                case 1:createPrintList.createAuthor();
-                case 2:createPrintList.createBook();
-                case 3:authorService.sortAuthorFamily();
-                case 4:createPrintList.printAuthorBook(1);
-                case 5:authorService.printAuthorInfo();
-                case 6:System.exit(0);
+            System.out.println("menu: 6-EXIT");
+            switch (menu = scanner.nextInt()) {
+                case 1:
+                    createPrintList.createAuthor();
+                    break;
+                case 2:
+                    createPrintList.createBook();
+                    break;
+
+                case 3:
+                    authorService.sortAuthorFamily();
+                    break;
+
+                case 4:
+                    createPrintList.printAuthorBook(1);
+                    break;
+
+                case 5:
+                    authorService.printAuthorInfo();
+                    break;
+
+                case 6:
+                    System.exit(0);
             }
         }
     }
