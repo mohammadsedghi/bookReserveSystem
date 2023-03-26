@@ -10,7 +10,7 @@ import java.sql.*;
 public class BookService {
     public final BookRepository bookRepository = new BookRepository();
     public final AuthorRepository authorRepository = new AuthorRepository();
-
+//addBook method  can added book in database
     public void addBook(String title, int printYear, long authorId) throws Exception {
 
         Book book = new Book(title, printYear, authorId);
@@ -20,12 +20,12 @@ public class BookService {
         book.setAuthorNameFamily(str);
         bookRepository.save(book);
     }
-
+//generate book id
     public long bookIdGenerator() throws Exception {
         long generator = bookRepository.loadId() + 1;
         return generator;
     }
-
+//load all of book from database
     public Book[] authorBookList(long authorId) throws Exception {
         BookRepository bookRepository = new BookRepository();
         Book[] books = bookRepository.loadAll();
