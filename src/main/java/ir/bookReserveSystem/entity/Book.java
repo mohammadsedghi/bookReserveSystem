@@ -1,12 +1,13 @@
 package ir.bookReserveSystem.entity;
 
 public class Book {
+    //variable
    private String title;
    private int printYear;
     private String AuthorNameFamily;
     private long authorId;
      private Long bookId;
-
+//setter and getter
     public Long getBookId() {
         return bookId;
     }
