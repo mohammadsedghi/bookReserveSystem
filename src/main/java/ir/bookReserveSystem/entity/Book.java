@@ -49,22 +49,22 @@ public class Book {
     }
 
 
-
+//constructor
     public Book(Long bookId,String title, int printYear, String authorNameFamily, int authorId) {
         this.title = title;
         this.printYear = printYear;
         AuthorNameFamily = authorNameFamily;
         this.authorId = authorId;
     }
-
+//constructor
     public Book(String title, int printYear, long authorId) {
         this.title = title;
         this.printYear = printYear;
         this.authorId = authorId;
     }
-
+//constructor
     public Book(){}
-
+//override to string method
     @Override
     public String toString() {
         return "Book{" +

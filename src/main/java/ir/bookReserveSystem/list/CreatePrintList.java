@@ -6,10 +6,11 @@ import ir.bookReserveSystem.service.AuthorService;
 import ir.bookReserveSystem.service.BookService;
 
 public class CreatePrintList {
+    //composition
     AuthorService authorService=new AuthorService();
     BookService bookService=new BookService();
 
-
+//create author method
    public void createAuthor()throws Exception{
        String[] authorName={"ali","reza","nima","mahan"};
        String[] authorFamily={"sedghi","arghan","rostami","tehrani"};
@@ -19,7 +20,7 @@ public class CreatePrintList {
        System.out.println("list of author created");
    }
 
-
+//create book method
 
     public void createBook()throws Exception{
         String[] title={"culture","economy","social","math","history"};
@@ -31,6 +32,7 @@ public class CreatePrintList {
         }}
         System.out.println("list of book created");
     }
+    //print book of author
    public void printAuthorBook()throws Exception {
        for (Book b : bookService.authorBookList(2)
        ) {
@@ -38,6 +40,7 @@ public class CreatePrintList {
 
        }
    }
+   //sort of family author
    public void sortAuthor(Author[] authors){
        int n = 4;
        String [] family=new String[authors.length];
