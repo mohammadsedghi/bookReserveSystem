@@ -1,9 +1,11 @@
 package ir.bookReserveSystem.repository;
 
+import ir.bookReserveSystem.connection.HikariCp;
 import ir.bookReserveSystem.connection.JdbcConnection;
 import ir.bookReserveSystem.entity.Author;
 import ir.bookReserveSystem.entity.Book;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +14,8 @@ import java.sql.SQLException;
 public class AuthorRepository {
     public void save(Author author) throws SQLException {
         final String QUERY1 = "insert into author(id, name, family,age) VALUES (?,?,?,?)";
-        Connection connection = JdbcConnection.getConnection();
+        DataSource dataSource= HikariCp.getDataSource();
+        Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
         statement.setLong(1,author.getId());
         statement.setString(2, author.getName());
@@ -25,7 +28,8 @@ public class AuthorRepository {
     public Author load(long authorId) throws Exception {
         Author author = new Author();
         final String QUERY1 = "select * from author where id=?";
-        Connection connection = JdbcConnection.getConnection();
+        DataSource dataSource= HikariCp.getDataSource();
+        Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
         statement.setLong(1, authorId);
         ResultSet resultSet = statement.executeQuery();
@@ -39,7 +43,8 @@ public class AuthorRepository {
     public long loadId() throws SQLException {
         long id=0;
         final String QUERY1 = "select * from author ";
-        Connection connection = JdbcConnection.getConnection();
+        DataSource dataSource= HikariCp.getDataSource();
+        Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()){
@@ -49,7 +54,8 @@ public class AuthorRepository {
     }
     public Author[] loadAll() throws SQLException {
         final String QUERY1 = "select * from author ";
-        Connection connection = JdbcConnection.getConnection();
+        DataSource dataSource= HikariCp.getDataSource();
+        Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1,
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);

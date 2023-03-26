@@ -1,15 +1,18 @@
 package ir.bookReserveSystem.repository;
 
+import ir.bookReserveSystem.connection.HikariCp;
 import ir.bookReserveSystem.connection.JdbcConnection;
 import ir.bookReserveSystem.entity.Author;
 import ir.bookReserveSystem.entity.Book;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 public class BookRepository {
     public void save(Book book) throws SQLException {
+        DataSource dataSource= HikariCp.getDataSource();
+        Connection connection = dataSource.getConnection();
         final String QUERY1 = "insert into book( id, title,authorNameFamily,printYear,authorid) VALUES (?,?,?,?,?)";
-        Connection connection = JdbcConnection.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
         statement.setLong(1,book.getBookId());
         statement.setString(2, book.getTitle());
@@ -21,9 +24,10 @@ public class BookRepository {
     }
 
     public Book load(int bookId) throws Exception {
+        DataSource dataSource= HikariCp.getDataSource();
+        Connection connection = dataSource.getConnection();
         Book book = new Book();
         final String QUERY1 = "select * from book where id=?";
-        Connection connection = JdbcConnection.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
         statement.setInt(1, bookId);
         ResultSet resultSet = statement.executeQuery();
@@ -36,16 +40,18 @@ public class BookRepository {
         return book;
     }
  public void delete(Book book) throws SQLException {
+     DataSource dataSource= HikariCp.getDataSource();
+     Connection connection = dataSource.getConnection();
     final String QUERY1 = "delete from book where id = ?";
-    Connection connection = JdbcConnection.getConnection();
     PreparedStatement statement = connection.prepareStatement(QUERY1);
     statement.setLong(1, book.getBookId());
     statement.execute();
     System.out.println("delete");
 }
     public Book[] loadAll() throws Exception {
+        DataSource dataSource= HikariCp.getDataSource();
+        Connection connection = dataSource.getConnection();
         final String QUERY1 = "select * from book ";
-        Connection connection = JdbcConnection.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1,
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
@@ -69,9 +75,10 @@ public class BookRepository {
         return books;
     }
     public long loadId() throws SQLException {
+        DataSource dataSource= HikariCp.getDataSource();
+        Connection connection = dataSource.getConnection();
         long id=0;
         final String QUERY1 = "select * from book ";
-        Connection connection = JdbcConnection.getConnection();
         PreparedStatement statement = connection.prepareStatement(QUERY1);
         ResultSet resultSet = statement.executeQuery();
        while (resultSet.next()){

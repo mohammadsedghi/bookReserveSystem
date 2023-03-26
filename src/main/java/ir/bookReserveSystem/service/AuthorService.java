@@ -21,8 +21,8 @@ public class AuthorService {
     }
 public void sortAuthorFamily() throws Exception{
    CreatePrintList createPrintList=new CreatePrintList();
-   //createPrintList.sortAuthor(authorRepository.loadAll());
-    createPrintList.sortAuthor(HikariCpAuthorRepository.loadAll());
+   createPrintList.sortAuthor(authorRepository.loadAll());
+
 }
 
     @Override

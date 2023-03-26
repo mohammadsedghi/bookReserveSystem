@@ -13,8 +13,9 @@ import java.sql.SQLException;
 public class HikariCpAuthorRepository {
     public static Author[] loadAll() throws SQLException {
         DataSource dataSource= HikariCp.getDataSource();
-        final String QUERY1 = "select * from author ";
         Connection connection = dataSource.getConnection();
+        final String QUERY1 = "select * from author ";
+
         PreparedStatement statement = connection.prepareStatement(QUERY1,
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);
