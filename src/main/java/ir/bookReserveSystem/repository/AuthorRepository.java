@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AuthorRepository {
+    //save author in database
     public void save(Author author) throws SQLException {
         final String QUERY1 = "insert into author(id, name, family,age) VALUES (?,?,?,?)";
         DataSource dataSource = HikariCp.getDataSource();
@@ -20,10 +21,10 @@ public class AuthorRepository {
         statement.setString(3, author.getFamily());
         statement.setInt(4, author.getAge());
         statement.execute();
-        System.out.println("save in the database");
+        System.out.println("save author"+author.getFamily()+" in the database");
         connection.close();
     }
-
+    //load author from database
     public Author load(long authorId) throws Exception {
         Author author = new Author();
         final String QUERY1 = "select * from author where id=?";
@@ -40,7 +41,7 @@ public class AuthorRepository {
         connection.close();
         return author;
     }
-
+    //load id of author from database
     public long loadId() throws SQLException {
         long id = 0;
         final String QUERY1 = "select * from author ";
@@ -54,7 +55,7 @@ public class AuthorRepository {
         connection.close();
         return id;
     }
-
+    //load all of author from database
     public Author[] loadAll() throws SQLException {
         final String QUERY1 = "select * from author ";
         DataSource dataSource = HikariCp.getDataSource();
