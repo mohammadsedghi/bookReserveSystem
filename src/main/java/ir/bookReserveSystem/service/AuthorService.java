@@ -5,6 +5,7 @@ import ir.bookReserveSystem.repository.AuthorRepository;
 import ir.bookReserveSystem.list.CreatePrintList;
 import ir.bookReserveSystem.service.BookService;
 
+import java.sql.*;
 import java.util.regex.Pattern;
 
 
@@ -16,7 +17,8 @@ public class AuthorService {
         if (Pattern.matches("[a-z]*",name)){
         Author author = new Author(name, family, age);
         author.setId(generateAuthorId());
-        authorRepository.save(author);
+       // authorRepository.save(author);
+            System.out.println(authorRepository.save1(author));
     }else{
             System.out.println("your name must be written lowercase , please Run program again");
             System.exit(0);}
@@ -33,6 +35,7 @@ public void sortAuthorFamily() throws Exception{
    createPrintList.sortAuthor(authorRepository.loadAll());
 
 }
+//print all of information of author with list of book
 public void printAuthorInfo()throws Exception{
     Author[] authors=authorRepository.loadAll();
 
@@ -45,6 +48,7 @@ public void printAuthorInfo()throws Exception{
         System.out.println(a);
     }
 }
+
 
     @Override
     public String toString() {

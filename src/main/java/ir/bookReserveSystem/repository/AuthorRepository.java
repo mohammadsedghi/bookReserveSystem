@@ -4,10 +4,7 @@ import ir.bookReserveSystem.connection.HikariCp;
 import ir.bookReserveSystem.entity.Author;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class AuthorRepository {
     //save author in database
@@ -23,6 +20,23 @@ public class AuthorRepository {
         statement.execute();
         System.out.println("save author"+author.getFamily()+" in the database");
         connection.close();
+    }
+
+    public int save1(Author author ) throws SQLException {
+        final String QUERY1 = "insert into author(id, name, family,age) VALUES (?,?,?,?)";
+        DataSource dataSource = HikariCp.getDataSource();
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(QUERY1, Statement.RETURN_GENERATED_KEYS);
+       statement.setLong(1,author.getId());
+        statement.setString(2, author.getName());
+        statement.setString(3, author.getFamily());
+        statement.setInt(4,author.getAge());
+        statement.execute();
+        ResultSet resultSet = statement.getGeneratedKeys();
+        resultSet.next();
+        int id = resultSet.getInt("id");
+        System.out.println("commit in the database");
+        return id;
     }
     //load author from database
     public Author load(long authorId) throws Exception {
