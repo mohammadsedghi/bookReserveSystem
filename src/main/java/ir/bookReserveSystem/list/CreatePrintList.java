@@ -33,8 +33,8 @@ public class CreatePrintList {
         System.out.println("list of book created");
     }
     //print book of author
-   public void printAuthorBook()throws Exception {
-       for (Book b : bookService.authorBookList(2)
+   public void printAuthorBook(int authorId)throws Exception {
+       for (Book b : bookService.authorBookList(authorId)
        ) {
            if (b != null) System.out.println(b);
 
@@ -49,24 +49,27 @@ public class CreatePrintList {
         family[i]=authors[i].getFamily();
        }
        String temp;
+       Author authorTemporary;
        for (int i = 0; i < n; i++) {
            for (int j = i + 1; j < n; j++) {
 
                // to compare one string with other strings
                if (family[i].compareTo(family[j]) > 0) {
                    // swapping
+                   authorTemporary=authors[i];
                    temp = family[i];
+                   authors[i]=authors[j];
                    family[i] = family[j];
+                   authors[j]=authorTemporary;
                    family[j] = temp;
                }
            }
        }
 
        // print output array
-       System.out.println(
-               "The author family in alphabetical order are: ");
+       System.out.println("The author family in alphabetical order are: ");
        for (int i = 0; i < n; i++) {
-           System.out.println(family[i]);
+           System.out.println("ID:"+authors[i].getId()+"  family of this author is :"+authors[i].getFamily());
        }
    }
 
