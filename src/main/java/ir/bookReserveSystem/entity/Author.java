@@ -1,5 +1,7 @@
 package ir.bookReserveSystem.entity;
 
+import java.util.Arrays;
+
 public class Author {
     //variable
    private String name,family;
@@ -56,5 +58,16 @@ public class Author {
 
     public void setBooks(Book[] books) {
         this.books = books;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "name='" + name + '\'' +
+                ", family='" + family + '\'' +
+                ", age=" + age +
+                ", books=" + Arrays.toString(books) +
+                ", id=" + id +
+                '}';
     }
 }
