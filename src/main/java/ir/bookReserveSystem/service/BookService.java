@@ -35,7 +35,6 @@ public class BookService {
             if (books[i].getAuthorId() == authorId) {
                 authorBooks[counter] = books[i];
                 counter++;
-
         }
     }
         return authorBooks;
@@ -45,6 +44,11 @@ public void deleteBook(long bookId )throws Exception{
         book.setBookId(bookId);
         bookRepository.delete(book);
 }
+    public void deleteBookAuthorId(long authorId )throws Exception{
+        Book book=new Book();
+        book.setAuthorId(authorId);
+        bookRepository.deleteAllBookAuthorId(book);
+    }
 
 
 }

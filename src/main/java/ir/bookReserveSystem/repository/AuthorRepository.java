@@ -19,6 +19,7 @@ public class AuthorRepository {
         statement.setInt(4, author.getAge());
         statement.execute();
         System.out.println("save author"+author.getFamily()+" in the database");
+        statement.close();
         connection.close();
     }
 
@@ -35,6 +36,7 @@ public class AuthorRepository {
         resultSet.next();
         int id = resultSet.getInt("id");
         System.out.println("commit in the database");
+        statement.close();
         connection.close();
         return id;
     }
@@ -51,6 +53,7 @@ public class AuthorRepository {
         author.setName(resultSet.getString("name"));
         author.setFamily(resultSet.getString("family"));
         author.setAge(resultSet.getInt("age"));
+        statement.close();
         connection.close();
         return author;
     }
@@ -64,6 +67,7 @@ public class AuthorRepository {
         while (resultSet.next()) {
             id = resultSet.getLong("id");
         }
+        statement.close();
         connection.close();
         return id;
     }
@@ -89,6 +93,7 @@ public class AuthorRepository {
             author.setAge(resultSet.getInt("age"));
             authors[i++] = author;
         }
+        statement.close();
         connection.close();
         return authors;
     }
@@ -99,5 +104,9 @@ public class AuthorRepository {
         statement.setLong(1, author.getId());
         statement.execute();
         System.out.println("the author with id "+author.getId()+" deleted");
+        statement.close();
+        connection.close();
+
     }
+
 }

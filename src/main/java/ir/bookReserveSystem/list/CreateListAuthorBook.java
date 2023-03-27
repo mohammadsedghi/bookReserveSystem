@@ -5,13 +5,13 @@ import ir.bookReserveSystem.entity.Book;
 import ir.bookReserveSystem.service.AuthorService;
 import ir.bookReserveSystem.service.BookService;
 
-public class CreatePrintList {
+public class CreateListAuthorBook {
     //composition
     AuthorService authorService=new AuthorService();
     BookService bookService=new BookService();
 
 //create author method
-   public void createAuthor()throws Exception{
+   public void createAuthorFromList()throws Exception{
        String[] authorName={"ali","reza","nima","mahan"};
        String[] authorFamily={"sedghi","arghan","rostami","tehrani"};
        for (int i = 0; i <authorName.length ; i++) {
@@ -19,6 +19,7 @@ public class CreatePrintList {
        }
        System.out.println("list of author created");
    }
+
 
 //create book method
 

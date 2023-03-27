@@ -21,6 +21,7 @@ public class BookRepository {
         statement.setLong(5,book.getAuthorId());
         statement.execute();
         System.out.println("save book in the database");
+        statement.close();
         connection.close();
     }
     //load book from database
@@ -37,6 +38,8 @@ public class BookRepository {
         book.setAuthorNameFamily(resultSet.getString("authorNameFamily"));
         book.setPrintYear(resultSet.getInt("printYear"));
         book.setAuthorId(resultSet.getLong("authorid"));
+        resultSet.close();
+        statement.close();
         connection.close();
         return book;
     }
@@ -48,7 +51,20 @@ public class BookRepository {
     statement.setLong(1, book.getBookId());
     statement.execute();
     System.out.println("the book with id "+book.getBookId()+" deleted");
+    statement.close();
+    connection.close();
 }
+    public void deleteAllBookAuthorId(Book book) throws SQLException {
+        Connection connection=HikariCp.getConnection();
+        final String QUERY1 = "delete from book where authorid = ?";
+        PreparedStatement statement = connection.prepareStatement(QUERY1);
+        statement.setLong(1, book.getAuthorId());
+        statement.execute();
+        System.out.println("All book with author id "+book.getAuthorId()+" deleted");
+        statement.close();
+        connection.close();
+    }
+
     //load all of  book from database
     public Book[] loadAll() throws Exception {
        Connection connection=HikariCp.getConnection();
@@ -73,6 +89,8 @@ public class BookRepository {
             book.setAuthorId(resultSet.getLong("authorid"));
             books[i++] = book;
         }
+        resultSet.close();
+        statement.close();
         connection.close();
         return books;
     }
@@ -86,6 +104,8 @@ public class BookRepository {
        while (resultSet.next()){
          id = resultSet.getLong("id");
        }
+       resultSet.close();
+       statement.close();
        connection.close();
         return id;
     }
