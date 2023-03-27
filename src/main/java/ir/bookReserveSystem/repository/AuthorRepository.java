@@ -2,6 +2,7 @@ package ir.bookReserveSystem.repository;
 
 import ir.bookReserveSystem.connection.HikariCp;
 import ir.bookReserveSystem.entity.Author;
+import ir.bookReserveSystem.entity.Book;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -90,5 +91,13 @@ public class AuthorRepository {
         }
         connection.close();
         return authors;
+    }
+    public void delete(Author author) throws SQLException {
+        Connection connection=HikariCp.getConnection();
+        final String QUERY1 = "delete from author where id = ?";
+        PreparedStatement statement = connection.prepareStatement(QUERY1);
+        statement.setLong(1, author.getId());
+        statement.execute();
+        System.out.println("the author with id "+author.getId()+" deleted");
     }
 }

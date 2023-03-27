@@ -40,6 +40,11 @@ public class BookService {
     }
         return authorBooks;
 }
+public void deleteBook(long bookId )throws Exception{
+        Book book=new Book();
+        book.setBookId(bookId);
+        bookRepository.delete(book);
+}
 
 
 }

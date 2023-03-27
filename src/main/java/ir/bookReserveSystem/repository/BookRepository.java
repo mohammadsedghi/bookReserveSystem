@@ -47,7 +47,7 @@ public class BookRepository {
     PreparedStatement statement = connection.prepareStatement(QUERY1);
     statement.setLong(1, book.getBookId());
     statement.execute();
-    System.out.println("delete");
+    System.out.println("the book with id "+book.getBookId()+" deleted");
 }
     //load all of  book from database
     public Book[] loadAll() throws Exception {

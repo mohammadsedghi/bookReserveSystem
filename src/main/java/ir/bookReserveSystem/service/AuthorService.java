@@ -48,7 +48,11 @@ public void printAuthorInfo()throws Exception{
         System.out.println(a);
     }
 }
-
+public void deleteAuthor(long authorId)throws Exception{
+        Author author=new Author();
+        author.setId(authorId);
+        authorRepository.delete(author);
+}
 
     @Override
     public String toString() {

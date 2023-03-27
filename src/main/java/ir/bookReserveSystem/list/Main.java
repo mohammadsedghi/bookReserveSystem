@@ -1,6 +1,7 @@
 package ir.bookReserveSystem.list;
 
 import ir.bookReserveSystem.service.AuthorService;
+import ir.bookReserveSystem.service.BookService;
 
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         CreatePrintList createPrintList = new CreatePrintList();
         AuthorService authorService = new AuthorService();
+        BookService bookService=new BookService();
         boolean program = true;
         int menu;
         while (program) {
@@ -18,7 +20,9 @@ public class Main {
             System.out.println("menu: 3-sort author family");
             System.out.println("menu: 4-create print book of author with id ");
             System.out.println("menu: 5-print all of book from all author and their info ");
-            System.out.println("menu: 6-EXIT");
+            System.out.println("menu: 6-delete author");
+            System.out.println("menu: 7-delete book");
+            System.out.println("menu: 8-EXIT");
             System.out.println("#############################################################");
             System.out.println("inter your menu number:");
             switch (menu = scanner.nextInt()) {
@@ -41,8 +45,15 @@ public class Main {
                 case 5:
                     authorService.printAuthorInfo();
                     break;
-
                 case 6:
+                    System.out.println("inter your authorId  that you want delete  ");
+                    authorService.deleteAuthor(scanner.nextInt());
+                    break;
+                case 7:
+                    System.out.println("inter your bookId  that you want delete  ");
+                    bookService.deleteBook(scanner.nextInt());
+                    break;
+                case 8:
                     System.exit(0);
             }
         }
